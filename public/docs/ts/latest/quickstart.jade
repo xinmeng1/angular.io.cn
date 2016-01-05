@@ -249,78 +249,129 @@ code-example(format="").
   Angular is also modular. It is a collection of library modules. 
   Each library is itself a module made up of several, related feature modules.
   
+  Angular 也是模块化的. 它是一个模块库的合集.
+  每个库都是有若干相关特性的模块组合成的一个模块.
+  
   When we need something from Angular, we import it from an Angular library module.
   We need something from Angular right now to help us define metadata about our component.
   
-  ### Component Metadata
+  当我们需要 Angular 的一些东西时, 我们可以从 Angular 的模块库中引入该模块.
+  我们现在需要一些 Angular 的内容来帮助我们定义我们组件的元数据(metadata).
+  
+  ### Component Metadata 组件元数据
   A class becomes an Angular component when we give it metadata.
   Angular needs the metadata to understand how to construct the view
   and how the component interacts with other parts of the application.
   
+  当我们给一个类添加元数据后, 该类就会变成 Angular 的组件.
+  Angular 需要元数据来理解如何构建视图以及组件如何和应用其他部分进行交互.
+  
   We define a component's metadata with the Angular `Component` function.
   We access that function by importing it from the primary Angular library,`angular2/core`.
+  
+  我们定义一个组件的元数据为 Angular的组件函数 `Componet`.
 +makeExample('quickstart/ts/app/app.component.ts', 'import', 'app/app.component.ts (import)')(format=".")
 :marked
   In TypeScript we apply that function to the class as a *decorator* 
   by prefixing it with the **@** symbol and invoking it
   just above the component class:
+  
+  在TypeScript中, 我们应用该函数与类作为*装饰器*通过使用前缀 **@** 符号
+  并且在组件类上面调用它:
 +makeExample('quickstart/ts/app/app.component.ts', 'metadata', 'app/app.component.ts (metadata)')
 :marked
   `@Component` tells Angular that this class *is an Angular component*.
   The configuration object passed to the `@Component` method has two
   fields, a `selector` and a `template`.
 
+  `@Component` 告诉 Angular, 这个类是*一个Angular组件*.
+  传到 `@Component` 方法的对象的配置有两个域, 一个是 `selector`, 另一个是 `template`.
+
   The `selector` specifies a simple CSS selector for a host HTML element named `my-app`.
   Angular creates and displays an instance of our `AppComponent`
   wherever it encounters a `my-app` element in the host HTML.
   
+  `selector``为名字为 `my-app` 的 HTML元素, 指定了简单的 CSS 选择器. 
+  当它在服务器HTML文件中遇到 `my-app` 元素时, Angular 创建并展示一个 `AppComponet` 的实例.
+  
 .alert.is-helpful
   :marked
     Remember the `my-app` selector! We'll need that information when we write our `index.html`
+    
+    记住这个 `my-app` 选择器! 当我们编写 `index.html` 时, 将需要该信息.
 :marked
   The `template` property holds the component's companion template.
   A template is a form of HTML that tells Angular how to render a view.
   Our template is a single line of HTML announcing "My First Angular App".
   
+  `template` 属性包含了组件相对应的模板.
+  一个模板是一个能够告诉 Angular 如何渲染一个对象的 HTML 表单.
+  我们的模板是一个简单的单行 HTML, 其中声明了 "My First Angular App".
+  
   Now we need something to tell Angular to load this component.
 
-  ### Give it the boot
+  现在我们需要一些东西来告诉 Angular 加载这个组件.
+
+  ### Give it the boot 引导该组件
   
   Add a new file , `boot.ts`, to the `app/` folder as follows:
+  
+  添加一个新的文件, `boot.ts`, 到 `app/` 目录, 如下所示:
 +makeExample('quickstart/ts/app/boot.ts', null, 'app/boot.ts')(format=".")
 :marked
   We need two things to launch the application:
   1. Angular's browser `bootstrap` function
   1. The application root component that we just wrote.
   
+  我们需要做两样东西来启动该应用:
+  1. Angualr的浏览器的引导程序 `bootstrap`
+  2. 我们刚刚编写的应用引导组件
+  
   We import both. Then we call `bootstrap`, passing in the **root component type**, 
   `AppComponent`.
- 
+  
+  我们引入上述两者. 然后我们调用引导程序 `bootstrap`, 传入**引导组件类型**参数 `AppComponent`.
+  
 .l-sub-section
   :marked
     Learn why we import `bootstrap` from `angular2/platform/browser`
     and why we create a separate *boot.ts* file in the [appendix below](#boot).
+    
+    学习为什么从 `angular2/platform/browser` 中引入 `bootstrap`
+    并且为什么我们创建一个独立的文件 *boot.ts*, 请参考该链接 [appendix below](#boot).
 :marked
   We've asked Angular to launch the app in a browser with our component at the root.
   Where will Angular put it? 
 
+  我们已经告诉 Angular 在浏览器中使用我们的组件作为引导, 启动该应用.
+  那么 Angular 把他放到哪里了呢?
+    
 .l-main-section
 :marked
-  ## Add the `index.html`
+  ## Add the `index.html` 增加文件 `index.html`
   
   Angular displays our application in a specific location on our `index.html`.
   It's time to create that file.
+  
+  Angular 显示我们的应用到一个指定的位置, 即我们的 `index.html`.
+  是时候创建该文件了.
 
   We won't put our `index.html` in the `app/` folder. 
   We'll locate it **up one level, in the project root folder**.
   
+  我们将不把 `index.html` 放到 `app/` 目录下.
+  而是把它道道**上一级目录中, 位于项目的根目录中**.
+  
 code-example(format="").
   cd ..
 :marked
-  Now create the`index.html` file and paste the following lines:
+  Now create the `index.html` file and paste the following lines:
+  
+  现在创建文件 `index.html`, 并复制粘贴一下代码:
 +makeExample('quickstart/ts/index.html', null, 'index.html')(format=".")
 :marked
   There are three noteworthy sections of HTML:
+  这里有三个HTML值得注意的部分
 
   1. We load the JavaScript libraries we need. `angular2-polyfills.js` and `Rx.js` are needed by Angular 2.<br/>
 
@@ -329,21 +380,36 @@ code-example(format="").
 
   3. We add the `<my-app>` tag in the `<body>`. **This is where our app lives!**
   
+  1. 我们加载我们所需的 JavaScript 库. `angular2-polyfills.js` 和 `Rx.js` 是 Angular 2必须的.
+  
+  2. 我们配置了名为 `System` 的条目来告诉他去引入我们编写的引导文件.
+  
+  3. 我们添加了标签 `<my-app>` 在HTML页面的 `<body>`中. **这里才是我们程序真正运行的地方!**
+  
   Something has to find and load our application modules. We're using **SystemJS** to do that.
   There are other choices and we're not saying SystemJS is the best. We like it and it works.
   
+  某些东西已经找到并且加载我们的应用木块. 我们正在使用 **SystemJS** 做这些工作.
+  这里还有其他的一些选择, 我们并不是说 SystemJS 是最好的. 但是我们细化它并且它工作良好.
+  
   The specifics of SystemJS configuration are out of bounds. 
   We'll briefly describe this particular configuration in the [appendix below](#systemjs).
+  
+  SystemJS的配置已经超出了本指南的范围.
+  我们将会在下面的连接中简要描述一下这种指定的配置方法, 参考 [appendix below](#systemjs).
   
   When Angular calls the `bootstrap` function in `boot.ts`, it reads the `AppComponent`
   metadata, finds the `my-app` selector, locates an element tag named `my-app`,
   and loads our application between those tags.
 
+  当 Angular 调用 `boot.ts` 文件中的 `bootstrap` 函数, 它将会读到 `AppComponent` 元数据, 发现 `my-app` 选择器, 然后定位一个标签名为 `my-app` 的元素, 最后加载我们的应用在这个标签中.
 .l-main-section
 :marked
-  ## Compile and run!
+  ## Compile and run! 编译并运行!
   
   Open a terminal window and enter this command:
+  
+  打开一个终端窗口并输入一下命令:
 code-example(format="").
   npm start
 :marked
@@ -352,35 +418,57 @@ code-example(format="").
   1. A static server called **lite-server** that loads `index.html` in a browser
   and refreshes the browser when application files change
 
+  该指令将会运行两个并行的 node 进程
+  1. 监控模式运行 TypeScript 编译 (可以实时产看文件更新效果)
+  2. 一个静态的服务器名为 **lite-server** 用来在浏览器中加载 `index.html`
+  并且在文件发生更改时负责页面刷新.
+
   In a few moments, a browser tab should open and display
 
+  等待一会, 一个浏览器的标签页将会自动打开并显示你的应用, 效果如下图
 figure.image-display
   img(src='/resources/images/devguide/quickstart/my-first-app.png' alt="Output of quickstart app")
 
 :marked
   Congratulations!  We are in business.
 
+  工鞋! 我们已经完成了一个简单的 Angular 2 的应用.
+  
 .alert.is-helpful
   :marked
     If you see `Loading...` displayed instead, see the
     [Browser ES6 support appendix](#es6support).
+    
+    如果你仅仅看到的内容为 `Loading...`, 请参考如下链接
+    [Browser ES6 support appendix](#es6support).
 :marked
-  ### Make some changes
+  ### Make some changes 更改文件查看效果
   
   Try changing the message to "My SECOND Angular 2 app".
+  
+  尝试着更改信息为 "My SECOND Angular 2 app". (位于组件的 template 中)
   
   The TypeScript compiler and `lite-server` are watching.
   They should detect the change, recompile the TypeScript into JavaScript,
   refresh the browser, and display the revised message.
 
+  TypeScript编译器和 `lite-server` 在一直监控的项目文件.
+  他们应该检测到更改并且实时的将 TypeScript 编译为 JavaScript,
+  再刷新浏览器显示修改的后的内容.
+
   It's a nifty way to develop an application!
+  
+  这是一个多么棒的开发应用的方式啊!
   
   We close the terminal window when we're done to terminate both the compiler and the server.
 
+  我们关闭终端窗口, 也就关闭了编译器和服务器.
+  
 .l-main-section
 :marked
-  ## Final structure
+  ## Final structure 最终的文件目录结构
   Our final project folder structure looks like this:
+  我们项目最终的文件目录结构如下所示:
 .filetree
   .file angular2-quickstart
   .children
@@ -394,6 +482,7 @@ figure.image-display
     .file tsconfig.json
 :marked
   And here are the files:
+  这里是这些文件内容:
 +makeTabs(`
     quickstart/ts/app/app.component.ts,
     quickstart/ts/app/boot.ts,
@@ -408,39 +497,61 @@ figure.image-display
 :marked
   ## Wrap Up
   Our first application doesn't do much. It's basically "Hello, World" for Angular 2.
+  
+  我们第一个应用没干太多事. 它也可以成为 Angular 2 的 "Hello, World".
 
   We kept it simple in our first pass: we wrote a little Angular component,
   we added some JavaScript libraries to `index.html`, and launched with a
   static file server. That's about all we'd expect to do for a "Hello, World" app.
 
+  我们力保该应用简洁明了: 我们编写了一个小的Angular组件,
+  我们添加了 JavaScript 库到 `index.html`中, 然后启动一个静态的服务器.
+  这些就是创建一个 "Hello, World" 应用全部工作.
+
   **We have greater ambitions.**
+  
+  **我们有更加雄伟的抱负**
 
   The good news is that the overhead of setup is (mostly) behind us. 
   We'll probably only touch the `package.json` to update libraries.
   We'll likely open `index.html` only if we need to add a library or some css stylesheets.
 
+  好消息是一些顶层的配置基本无需我们关系.
+  我们将仅仅在更新库的时候才会接触 `package.json`.
+  我们也仅仅在需要添加一些库和CSS样式表文件时, 才会打开 `index.html`.
+  
   We're about to take the next step and build a small application that 
   demonstrates the great things we can build with Angular 2.
 
-  Join us on the [Tour of Heroes Tutorial](./tutorial)!
+  我们将会进一步学习从而创建一个小的应用
+  来展示使用 Angular 2 所能做的.
 
+  Join us on the [Tour of Heroes Tutorial](./tutorial)!
+  进入我们的高级案例学习 [Tour of Heroes Tutorial](./tutorial)!
 
 .l-main-section
 :marked
-  ## Appendices
+  ## Appendices 附录
   The balance of this chapter is a set of appendices that
   elaborate on some of the points we covered quickly above.
   
+  这一章主要是一些附录文件
+  详细阐述上述案例中略过的部分.
+  
   There is no essential material here. Continued reading is for the curious.
+  这里没有必备的材料. 如果感兴趣就继续读下去.
   
 .l-main-section
 :marked
   <a id="es6support"></a>
-  ### Appendix: Browser ES6 support
+  ### Appendix: Browser ES6 support 附录: 浏览器 ES6 支持.
   Angular 2 relies on some ES2015 features, most of them found in modern
   browsers. Some browsers (including IE 11) require a shim to support the
   needed functionality.
   Try loading the following shim *above* the other scripts in the `index.html`:
+
+  Angular 2 依赖于一些ES2015的特性, 大部分现代浏览器都已经支持. 一些其他浏览器 (包括 IE11) 需要shim来支持所必须的功能. (译者注:一个shim是一个库,它将一个新的API引入到一个旧的环境中,而且仅靠旧环境中已有的手段实现.)
+  尝试加载下面的 shim 在上面的 `index.html` 代码中.
 
 code-example(language="html" format=".").
   &lt;script src=&quot;node_modules/es6-shim/es6-shim.js&quot;&gt;&lt;/script&gt;
@@ -450,15 +561,21 @@ code-example(language="html" format=".").
 .l-main-section
 :marked
   <a id="package-json"></a>
-  ### Appendix: package.json
+  ### Appendix: package.json 附录: package.json
 
   [npm](https://docs.npmjs.com/) is a popular package manager and Angular application developers rely on it
   to acquire and manage the libraries their apps require.
   
+  [npm](https://docs.npmjs.com/) 是一个非常流行的包管理器, 并且 Angular 应用开发者多数依赖于它来获取和管理他们应用所需的库.
+  
   We specify the packages we need in an npm [package.json](https://docs.npmjs.com/files/package.json) file.
+  
+  我们制定一个我们需的包在一个 npm 配置文件中 [package.json](https://docs.npmjs.com/files/package.json).
   
   The Angular team suggests the packages listed in the `dependencies` and `devDependencies`
   sections listed in this file:
+  
+  Angualr 团队推荐将所需要的包列在文件的两部分中 `dependencies` 和 `devDependencies`:
 
 +makeJson('quickstart/ts/package.1.json',{ paths: 'dependencies, devDependencies'}, 'package.json (dependencies)')(format=".") 
 :marked
@@ -468,17 +585,30 @@ code-example(language="html" format=".").
     We're recommending this particular set that we know work well together. 
     Play along with us for now. 
     Feel free to make substitutions later to suit your tastes and experience.
+    
+    这里有其他可以包的选择.
+    我们推荐这个指定的配置因为我们知道它们工作良好.
+    跟我们一起玩吧
+    随意替换不同的包来满足您的品味和体验
+    
 :marked
   A `package.json` has an optional **scripts** section where we can define helpful
   commands to perform development and build tasks. 
   We've included a number of such scripts in our suggested `package.json`:
+  
+  `package.json` 配置文件是一个可选择的 **脚本** 用来定义有用的指令来进行开发和构建任务.
+  我们已经包含了一部分脚本在我们推荐的 `package.json` 文件中:
 +makeJson('quickstart/ts/package.1.json',{ paths: 'scripts'}, 'package.json (scripts)')(format=".") 
 :marked
   We've seen how we can run the compiler and a server at the same time with this command:
+  
+  我们已经看到我们如何同时运行编译器和服务器使用同一个指令:
 code-example(format="").
   npm start
 :marked
   We execute npm scripts in that manner: `npm run` + *script-name*. Here's what these scripts do:
+  
+  我们还有其他方式执行 npm 脚本:  `npm run` + *脚本名称*. 这里是这些脚本的用途:
   
   * `npm run tsc` - run the TypeScript compiler once
   
@@ -489,21 +619,37 @@ code-example(format="").
   a light-weight, static file server, written and maintained by [John Papa](http://johnpapa.net/) 
   with excellent support for Angular apps that use routing.
 
+  * `npm run tsc` - 运行一次 TypeScript 编译器
+  
+  * `npm run tsc:w` - 使用监控模式运行 TypeScript 编译器; 
+  编译器将会保持运行, 等待 TypeScript 做出更改, 一旦检测到这些更改并重新编译
+ 
+  * `npm run lite` - 运行 [lite-server](https://www.npmjs.com/package/lite-server), 
+  这是一个轻量级的静态文件服务器, 由[John Papa](http://johnpapa.net/)编写和维护. 该服务器完美支持 Angular 应用的路由机制.
+
 
 .l-main-section
 :marked
   <a id="npm-errors"></a>
-  ### Appendix: Npm errors and warnings
+  ### Appendix: Npm errors and warnings 附录: npm 的错误和警告
   
   All is well if there are no console messages starting with `npm ERR!` *at the end* of an **npm install**. 
   There might be a few `npm WARN` messages along the way &mdash; and that is perfectly fine.
+  
+  在执行完 **npm install** 后, 如果没有输出信息带有 `npm ERR!`, 说明工作正常完成了.
   
   We often see an `npm WARN` message after a series of `gyp ERR!` messages. 
   Ignore them. A package may try to re-compile itself using `node-gyp`.
   If the re-compile fails, the package recovers (typically with a pre-built version)
   and everything works.
   
+  我们经常看到一些警告信息 `npm WARN` 在一系列的 `gyp ERR!` 信息之后.
+  忽略它们吧. 一个包可以会使用 `node-gyp` 尝试重新自己.
+  如果重新编译失败, 这个包会被恢复(准确地讲是预编译版本)并且正常工作.
+  
   We are in good shape as long as there are no `npm ERR!` messages at the very end of `npm install`.
+  
+  如果 `npm install` 之后没有 `npm ERR!` 消息, 一切安好!
   
 <!-- Move this to the Style Guide when we have one -->
 .l-main-section
