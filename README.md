@@ -1,5 +1,12 @@
+Angular.io 中文官方文档翻译
+
+网站已经托管到[firebase](https://angularcn.firebaseapp.com),定期翻译更新. 翻译完成会进行通知.本文档将会定期根据官方更新进行相应更新
+
 # Angular.io
+
 Angular.io is currently the preview site for Angular 2. This site also includes links to other helpful angular resources including Angular 1, Angular Material, and AngularFire.
+
+当前 `Angular.io` 是 `Angular 2` 的预览网站. 该网站还包括了一些有用链接, 包括 `Angular 1`, `Angular Material`, 和 `AngularFire`.
 
 ## How you can help
 - [File an issue on github](https://github.com/angular/angular.io/issues)
