@@ -51,13 +51,13 @@ figure.image-display
   
   Of course we won't build  many apps that only run in plunker. 
   Let's follow a process that's closer to what we'd do in real life.
-  
-  确实我们不能在 `plunker` 上构建很多应用. 所以让我们使用以下步骤开始我们实际开发部署吧.
 
   1. Set up our development environment
   1. Write the Angular root component for our app
   1. Bootstrap it to take control of the main web page
   1. Write the main page (`index.html`)
+
+  确实我们不能在 `plunker` 上构建很多应用. 所以让我们使用以下步骤开始我们实际开发部署吧.
 
   1. 配置我们的开发环境
   1. 为我们的应用开发 Angular 根组件 (root component)
@@ -228,7 +228,7 @@ code-example(format="").
   `AppComponent` in a visual tree. 
   A more sophisticated app would have more files and modules, at least as many as it had components.
   
-  更加复杂的应用一般会有子组件继承自 `AppComponent`, 呈树状机构.
+  更加复杂的应用一般会有子组件继承自 `AppComponent`, 呈树状结构.
   更加负责的应用一般会有更多的文件和模块, 至少和组件数量匹配.
 
   This Quickstart isn't sophisticated; one component is all we need.
@@ -291,7 +291,7 @@ code-example(format="").
   Angular creates and displays an instance of our `AppComponent`
   wherever it encounters a `my-app` element in the host HTML.
   
-  `selector``为名字为 `my-app` 的 HTML元素, 指定了简单的 CSS 选择器. 
+  `selector` 为名字为 `my-app` 的 HTML元素, 指定了简单的 CSS 选择器. 
   当它在服务器HTML文件中遇到 `my-app` 元素时, Angular 创建并展示一个 `AppComponet` 的实例.
   
 .alert.is-helpful
@@ -371,7 +371,6 @@ code-example(format="").
 +makeExample('quickstart/ts/index.html', null, 'index.html')(format=".")
 :marked
   There are three noteworthy sections of HTML:
-  这里有三个HTML值得注意的部分
 
   1. We load the JavaScript libraries we need. `angular2-polyfills.js` and `Rx.js` are needed by Angular 2.<br/>
 
@@ -379,6 +378,8 @@ code-example(format="").
   boot file we just wrote.
 
   3. We add the `<my-app>` tag in the `<body>`. **This is where our app lives!**
+  
+  这里有三个HTML值得注意的部分
   
   1. 我们加载我们所需的 JavaScript 库. `angular2-polyfills.js` 和 `Rx.js` 是 Angular 2必须的.
   
